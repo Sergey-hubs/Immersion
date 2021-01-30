@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once 'register.php';
+require_once 'functions.php';
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ require_once 'register.php';
         </div>
         <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
 
-            <?php display_flash_message("success"); ?>
+                <?php display_flash_message('success') ?>
 
             <form action="">
                 <div class="form-group">
@@ -63,7 +63,7 @@ require_once 'register.php';
             </form>
         </div>
         <div class="blankpage-footer text-center">
-            Нет аккаунта? <a href="page_register.html"><strong>Зарегистрироваться</strong>
+            Нет аккаунта? <a href="page_register.php"><strong>Зарегистрироваться</strong>
         </div>
     </div>
     <video poster="img/backgrounds/clouds.png" id="bgvid" playsinline autoplay muted loop>
