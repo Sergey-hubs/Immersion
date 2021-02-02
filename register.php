@@ -11,6 +11,7 @@ if (!empty($user)) {
     set_flash_message('danger', '<strong>Уведомление!</strong> Этот эл. адрес уже занят другим пользователем.');
     redirect_to("/page_register.php");
 } elseif (add_user($email, $password)) {
+    $name = $_POST['success'];
     set_flash_message('success', 'Регистрация успешна');
     redirect_to("/page_login.php");
 }
