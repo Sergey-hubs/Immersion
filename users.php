@@ -55,7 +55,9 @@ require('functions.php');
         </div>
         <div class="row">
             <div class="col-xl-12">
-                <?php echo $_SESSION['button'] ?>
+                <?php if ($_SESSION['role'] == 'admin') : ?>
+                    <a class="btn btn-success" href="create_user.html">Добавить</a>
+                <?php endif; ?>
                 <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
                     <input type="text" id="js-filter-contacts" name="filter-contacts" class="form-control shadow-inset-2 form-control-lg" placeholder="Найти пользователя">
                     <div class="btn-group btn-group-lg btn-group-toggle hidden-lg-down ml-3" data-toggle="buttons">
@@ -69,8 +71,7 @@ require('functions.php');
                 </div>
             </div>
         </div>
-        <?php $users = get_all_users() ?>
-        <?php foreach ($users as $user) : ?>
+        <?php foreach (get_all_users() as $user) : ?>
             <div class="row" id="js-contacts">
                 <div class="col-xl-4">
                     <div id='c_1' class='card border shadow-0 mb-g shadow-sm-hover' data-filter-tags=<?php echo $user['name']; ?>>
@@ -79,7 +80,7 @@ require('functions.php');
                                 <span class="status status-success mr-3">
                                     <span class="rounded-circle profile-image d-block " style="background-image:url(<?php echo $user['image'] ?>); background-size: cover;"></span>
                                 </span>
-                                <?php if (isset($_SESSION['admin'])) : ?>
+                                <?php if ($_SESSION['role'] == 'admin') : ?>
                                     <div class="info-card-text flex-1">
                                         <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
                                             <?php echo $user['name'] ?>
@@ -112,7 +113,7 @@ require('functions.php');
                                         <span class="collapsed-reveal">-</span>
                                     </button>
 
-                                <?php elseif ($user['email'] !== $_SESSION['email'] && $user['access'] !== NULL) : ?>
+                                <?php elseif ($user['email'] !== $_SESSION['email']) : ?>
                                     <?php echo $user['name'] ?>
 
                                 <?php else : ?>

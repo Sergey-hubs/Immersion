@@ -18,13 +18,13 @@ function get_user_by_email($email) {
     return $user;
 }
 
-function login($email, $password, $access) {
+function login($email, $password) {
     $pdo = new PDO('mysql:host=localhost;dbname=my_project', 'root', 'root');
-    $sql = 'SELECT * FROM users WHERE email=:email; password=:password; access=:access';
+    $sql = 'SELECT * FROM users WHERE email=:email; password=:password; :role';
     $statemant = $pdo->prepare($sql);
     $statemant->execute(['email' => $email,
                          'password' => $password,
-                         'access'    => $access]);
+                         'role' => 'role']);
     $user = $statemant->fetch(PDO::FETCH_ASSOC);
     return $user;
 }
